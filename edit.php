@@ -87,8 +87,8 @@ include("conn.php");
     <div class="container edit-container">
         <?php
         if(isset($_GET['action_even'])=='edit'){
-            $employee_id=$_GET['employee_id'];
-            $sql="SELECT * FROM employees WHERE employee_id=$employee_id";
+            $id=$_GET['id'];
+            $sql="SELECT * FROM computer_specs_simple WHERE id=$id";
             $result=$conn->query($sql);
             if($result->num_rows>0){
                 $row=$result->fetch_assoc();
@@ -99,48 +99,40 @@ include("conn.php");
         }
         ?>
 
-        <h1><i class="bi bi-pencil-square"></i> แก้ไขข้อมูลพนักงาน</h1>
+        <h1><i class="bi bi-pencil-square"></i> แก้ไขข้อมูล</h1>
 
         <form action="edit_1.php" method="POST">
-            <input type="hidden" name="employee_id" value="<?php echo $row['employee_id']; ?>">
+            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
+                <label class="col-sm-3 col-form-label">id</label>
                 <div class="col-sm-9">
                     <div class="form-control bg-light" readonly>
-                        <?php echo $row['employee_id']; ?>
+                        <?php echo $row['id']; ?>
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">ชื่อ</label>
+                <label class="col-sm-3 col-form-label">ชื่อเจ้าของ</label>
                 <div class="col-sm-9">
-                    <input type="text" name="first_name" class="form-control" maxlength="50" 
-                           value="<?php echo htmlspecialchars($row['first_name']); ?>" required>
+                    <input type="text" name="owner_name" class="form-control" maxlength="50" 
+                           value="<?php echo htmlspecialchars($row['owner_name']); ?>" required>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">นามสกุล</label>
+                <label class="col-sm-3 col-form-label">ประเภท</label>
                 <div class="col-sm-9">
-                    <input type="text" name="last_name" class="form-control" maxlength="50" 
-                           value="<?php echo htmlspecialchars($row['last_name']); ?>" required>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">ตำแหน่ง</label>
-                <div class="col-sm-9">
-                    <select name="department" class="form-select" required>
-                        <option value="">กรุณาระบุตำแหน่ง</option>
+                    <select name="computer_type" class="form-select" required>
+                        <option value="">กรุณาประเภท</option>
                         <?php 
-                        $departments = [
-                            'ฝ่ายการตลาด', 'ฝ่ายบัญชี', 
-                            'ฝ่ายบุคคล', 'ฝ่ายผลิต', 'ฝ่ายไอที'
+                        $computer_type = [
+                            'Laptop ', 'Desktop', 
+                            'All-in-One',
                         ];
-                        foreach ($departments as $dept) {
-                            $selected = ($row['department'] == $dept) ? 'selected' : '';
+                        foreach ($computer_type as $dept) {
+                            $selected = ($row['computer_type'] == $dept) ? 'selected' : '';
                             echo "<option value='$dept' $selected>$dept</option>";
                         }
                         ?>
@@ -149,15 +141,18 @@ include("conn.php");
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">เพศ</label>
+                <label class="col-sm-3 col-form-label">แบรนด์</label>
                 <div class="col-sm-9">
-                    <select name="gender" class="form-select" required>
-                        <option value="">กรุณาระบุเพศ</option>
+                    <select name="brand" class="form-select" required>
+                        <option value="">กรุณาระบุแบรนด์</option>
                         <?php 
-                        $genders = ['ชาย' => 'เพศชาย', 'หญิง' => 'เพศหญิง', 'อื่นๆ' => 'LGBTQ+'];
-                        foreach ($genders as $value => $label) {
-                            $selected = ($row['gender'] == $value) ? 'selected' : '';
-                            echo "<option value='$value' $selected>$label</option>";
+                        $brand = [
+                            'Apple ', 'Dell', 
+                            'HP (Hewlett-Packard)', 'Lenovo','Acer','Microsoft','MSI ','Razer','Gigabyte', 'ASUS'
+                        ];
+                        foreach ($brand as $dept) {
+                            $selected = ($row['brand'] == $dept) ? 'selected' : '';
+                            echo "<option value='$dept' $selected>$dept</option>";
                         }
                         ?>
                     </select>
@@ -165,18 +160,26 @@ include("conn.php");
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">อายุ</label>
+                <label class="col-sm-3 col-form-label">model</label>
                 <div class="col-sm-9">
-                    <input type="number" name="age" class="form-control" min="18" max="100" 
-                           value="<?php echo htmlspecialchars($row['age']); ?>" required>
+                    <input type="" name="model" class="form-control" maxlength="50" 
+                           value="<?php echo htmlspecialchars($row['model']); ?>" required>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">เงินเดือน</label>
+                <label class="col-sm-3 col-form-label">cpu</label>
                 <div class="col-sm-9">
-                    <input type="number" name="salary" class="form-control" min="0" step="0.01" 
-                           value="<?php echo htmlspecialchars($row['salary']); ?>" required>
+                    <input type="text" name="processor" class="form-control" min="18" max="100" 
+                           value="<?php echo htmlspecialchars($row['processor']); ?>" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">ram</label>
+                <div class="col-sm-9">
+                    <input type="number" name="ram" class="form-control" min="0" step="0.01" 
+                           value="<?php echo htmlspecialchars($row['ram']); ?>" required>
                 </div>
             </div>
 

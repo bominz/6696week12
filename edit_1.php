@@ -78,23 +78,23 @@ include("conn.php");
     <div class="container confirmation-container">
         <?php
         // ตรวจสอบข้อมูลที่ส่งมา
-        $employee_id = $_POST['employee_id'];
-        $first_name = $conn->real_escape_string($_POST['first_name']);
-        $last_name = $conn->real_escape_string($_POST['last_name']);
-        $department = $conn->real_escape_string($_POST['department']);
-        $gender = $conn->real_escape_string($_POST['gender']);
-        $age = $conn->real_escape_string($_POST['age']);
-        $salary = $conn->real_escape_string($_POST['salary']);
+        $id = $_POST['id'];
+        $owner_name = $conn->real_escape_string($_POST['owner_name']);
+        $computer_type = $conn->real_escape_string($_POST['computer_type']);
+        $brand = $conn->real_escape_string($_POST['brand']);
+        $model = $conn->real_escape_string($_POST['model']);
+        $processor = $conn->real_escape_string($_POST['processor']);
+        $ram = $conn->real_escape_string($_POST['ram']);
 
         // เขียนคำสั่ง SQL เพื่ออัปเดตข้อมูล
-        $sql = "UPDATE employees SET 
-                first_name='$first_name',
-                last_name='$last_name',
-                department='$department',
-                gender='$gender',
-                age='$age',
-                salary='$salary'
-                WHERE employee_id=$employee_id";
+        $sql = "UPDATE computer_specs_simple SET 
+                owner_name='$owner_name',
+                computer_type='$computer_type',
+                brand='$brand',
+                model='$model',
+                processor='$processor',
+                ram='$ram'
+                WHERE id=$id";
 
         // ประมวลผลคำสั่ง SQL
         if ($conn->query($sql) === TRUE) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มข้อมูลพนักงาน | ระบบจัดการข้อมูลพนักงาน</title>
+    <title>เพิ่มข้อมูล | ระบบจัดการข้อมูลลูกค้า</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -75,18 +75,18 @@
         }
     </style>
 
-    <title>เพิ่มข้อมูลพนักงาน</title>
+    <title>เพิ่มข้อมูล</title>
 </head>
 
 <body>
     <div class="container page-container">
-        <h1 class="text-center">เพิ่มข้อมูลพนักงาน</h1>
+        <h1 class="text-center">เพิ่มข้อมูล</h1>
 
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" novalidate id="employeeForm">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="needs-validation" novalidate id="computer_specs_simple">
             <div class="row mb-3">
-                <label for="employee_id" class="col-sm-3 col-md-2 col-form-label">รหัสพนักงาน</label>
+                <label for="id" class="col-sm-3 col-md-2 col-form-label">id</label>
                 <div class="col-sm-9 col-md-4">
-                    <input type="text" class="form-control" id="employee_id" name="employee_id" required>
+                    <input type="text" class="form-control" id="id" name="id" required>
                     <div class="invalid-feedback">
                         กรุณากรอกรหัสพนักงาน
                     </div>
@@ -94,71 +94,76 @@
             </div>
             
             <div class="row mb-3">
-                <label for="first_name" class="col-sm-3 col-md-2 col-form-label">ชื่อ</label>
+                <label for="owner_name" class="col-sm-3 col-md-2 col-form-label">ชื่อเจ้าของ</label>
                 <div class="col-sm-9 col-md-4">
-                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    <input type="text" class="form-control" id="owner_name" name="owner_name" required>
                     <div class="invalid-feedback">
-                        กรุณากรอกชื่อ
+                        กรุณากรอกชื่อเจ้าของ
                     </div>
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label for="last_name" class="col-sm-3 col-md-2 col-form-label">นามสกุล</label>
+                <label for="computer_type" class="col-sm-3 col-md-2 col-form-label">ประเภท</label>
                 <div class="col-sm-9 col-md-4">
-                    <input type="text" class="form-control" id="last_name" name="last_name" required>
-                    <div class="invalid-feedback">
-                        กรุณากรอกนามสกุล
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mb-3">
-                <label for="department" class="col-sm-3 col-md-2 col-form-label">ตำแหน่ง</label>
-                <div class="col-sm-9 col-md-4">
-                    <select name="department" id="department" class="form-select" required>
-                        <option value="" selected disabled>เลือกตำแหน่ง</option>
-                        <option value="การเงิน">การเงิน</option>
-                        <option value="บุคคล">บุคคล</option>
-                        <option value="การตลาด">การตลาด</option>
-                        <option value="ไอที">ไอที</option>
-                        <option value="บริการลูกค้า">บริการลูกค้า</option>
-                        <option value="คลังสินค้า">คลังสินค้า</option>
+                    <select name="computer_type" id="computer_type" class="form-select" required>
+                        <option value="" selected disabled>เลือกประเภท</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="All-in-One">All-in-One</option>
                     </select>
                     <div class="invalid-feedback">
-                        กรุณาเลือกตำแหน่ง
+                        กรุณาเลือกประเภท
                     </div>
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label for="gender" class="col-sm-3 col-md-2 col-form-label">เพศ</label>
+                <label for="brand" class="col-sm-3 col-md-2 col-form-label">แบรนด์</label>
                 <div class="col-sm-9 col-md-4">
-                    <select name="gender" id="gender" class="form-select" required>
-                        <option value="" selected disabled>เลือกเพศ</option>
-                        <option value="ชาย">ชาย</option>
-                        <option value="หญิง">หญิง</option>
+                    <select name="brand" id="brand" class="form-select" required>
+                        <option value="" selected disabled>เลือกแบรนด์</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Dell">Dell</option>
+                        <option value="HP (Hewlett-Packard)">HP (Hewlett-Packard)</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Microsoft">Microsoft</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Razer">Razer</option>
+                        <option value="Gigabyte">Gigabyte</option>
+                        <option value="ASUS">ASUS</option>
                     </select>
                     <div class="invalid-feedback">
-                        กรุณาเลือกเพศ
+                        กรุณาเลือกแบรนด์
                     </div>
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label for="age" class="col-sm-3 col-md-2 col-form-label">อายุ</label>
+                <label for="model" class="col-sm-3 col-md-2 col-form-label">model</label>
                 <div class="col-sm-9 col-md-4">
-                    <input type="number" class="form-control" id="age" name="age" min="18" max="65" required>
+                    <input type="text" class="form-control" id="model" name="model" required>
                     <div class="invalid-feedback">
-                        กรุณากรอกอายุ (18-65)
+                        กรุณากรอกmodel
                     </div>
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label for="salary" class="col-sm-3 col-md-2 col-form-label">เงินเดือน</label>
+                <label for="processor" class="col-sm-3 col-md-2 col-form-label">cpu</label>
                 <div class="col-sm-9 col-md-4">
-                    <input type="number" class="form-control" id="salary" name="salary" min="0" required>
+                    <input type="text" class="form-control" id="processor" name="processor" required>
+                    <div class="invalid-feedback">
+                        กรุณากรอกcpu
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="ram" class="col-sm-3 col-md-2 col-form-label">ram</label>
+                <div class="col-sm-9 col-md-4">
+                    <input type="number" class="form-control" id="ram" name="ram" min="0" required>
                     <div class="invalid-feedback">
                         กรุณากรอกเงินเดือน
                     </div>
@@ -184,17 +189,17 @@
             include("conn.php");
             
             // Get form data and sanitize inputs
-            $employee_id = mysqli_real_escape_string($conn, $_POST['employee_id']);
-            $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
-            $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
-            $department = mysqli_real_escape_string($conn, $_POST['department']);
-            $gender = mysqli_real_escape_string($conn, $_POST['gender']);
-            $age = mysqli_real_escape_string($conn, $_POST['age']);
-            $salary = mysqli_real_escape_string($conn, $_POST['salary']);
+            $id = mysqli_real_escape_string($conn, $_POST['id']);
+            $owner_name = mysqli_real_escape_string($conn, $_POST['owner_name']);
+            $computer_type = mysqli_real_escape_string($conn, $_POST['computer_type']);
+            $brand = mysqli_real_escape_string($conn, $_POST['brand']);
+            $model = mysqli_real_escape_string($conn, $_POST['model']);
+            $processor = mysqli_real_escape_string($conn, $_POST['processor']);
+            $ram = mysqli_real_escape_string($conn, $_POST['ram']);
             
             // Insert data into database
-            $sql = "INSERT INTO employees (employee_id, first_name, last_name, department, gender, age, salary) 
-                    VALUES ('$employee_id', '$first_name', '$last_name', '$department', '$gender', '$age', '$salary')";
+            $sql = "INSERT INTO computer_specs_simple (id, owner_name, computer_type, brand, model, processor, ram) 
+                    VALUES ('$id', '$owner_name', '$computer_type', '$brand', '$model', '$processor', '$ram')";
             
             if ($conn->query($sql) === TRUE) {
                 echo '<div class="alert alert-success mt-3 text-center">
